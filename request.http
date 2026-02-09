@@ -1,0 +1,12 @@
+POST http://localhost:8080/api/v1/software-engineers/add
+Content-Type: application/json
+
+{
+"name": "John Doe",
+"techStack": "Java, Spring Boot"
+}
+
+###
+GET http://localhost:8080/api/v1/software-engineers
+
+

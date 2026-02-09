@@ -2,15 +2,23 @@ package com.amigoscode.exemplo;
 
 import java.util.Objects;
 
-public class SoftwareEngineer {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
+public class SoftwareEngineer {    
+    @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-    private int id;
+
     private String techStack;
 
     public SoftwareEngineer() {
     }
 
-    public SoftwareEngineer(String name, int id, String techStack) {
+    public SoftwareEngineer(String name, Integer id, String techStack) {
         this.name = name;
         this.id = id;
         this.techStack = techStack;
@@ -24,11 +32,11 @@ public class SoftwareEngineer {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,7 +53,7 @@ public class SoftwareEngineer {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + id;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((techStack == null) ? 0 : techStack.hashCode());
         return result;
     }
@@ -64,7 +72,10 @@ public class SoftwareEngineer {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         if (techStack == null) {
             if (other.techStack != null)
